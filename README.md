@@ -1,5 +1,5 @@
-#Sliver Table
-[![Pub](https://img.shields.io/pub/v/dio.svg?style=flat-square)](https://pub.dartlang.org/packages/sliver_table)
+# Sliver Table
+[![Pub](https://img.shields.io/pub/v/sliver_table.svg?style=flat-square)](https://pub.dartlang.org/packages/sliver_table)
 
 This flutter package provides a table widget that can be used 
 inside of a [CustomScrollView](https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html).
