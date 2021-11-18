@@ -9,7 +9,7 @@ dependencies:
 ```
 
 ## Preview
-![Preview](https://raw.githubusercontent.com/omarsahl/sliver_table/master/preview/sliver_table_preview.mp4)
+![Preview](https://raw.githubusercontent.com/omarsahl/sliver_table/master/preview/preview.gif)
 
 ## Usage
 
