@@ -1,8 +1,8 @@
 name: sliver_table
 description: A table widget that can be used inside of a [CustomScrollView].
 version: 0.0.1
-homepage: https://github.com/omarsahl/sliver_table
-author: omarsahl <omarsahl.com>
+homepage: https://github.com/omarsahl/
+repository: https://github.com/omarsahl/sliver_table
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

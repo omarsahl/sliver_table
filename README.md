@@ -8,6 +8,9 @@ dependencies:
   sliver_table: ^0.0.1
 ```
 
+## Preview
+![Preview](https://raw.githubusercontent.com/omarsahl/sliver_table/master/preview/sliver_table_preview.mp4)
+
 ## Usage
 
 ```dart
