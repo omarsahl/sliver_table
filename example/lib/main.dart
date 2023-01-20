@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:sliver_table/sliver_table.dart';
 
 void main() async {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: Scaffold(
+      home: const Scaffold(
         body: DefaultTextStyle(
           child: ColorsTable(),
-          style: const TextStyle(fontSize: 15.0, color: Colors.white),
+          style: TextStyle(fontSize: 15.0, color: Colors.white),
         ),
       ),
     ),
@@ -17,33 +17,9 @@ void main() async {
 }
 
 class ColorsTable extends StatelessWidget {
-  ColorsTable({Key? key}) : super(key: key);
+  const ColorsTable({Key? key}) : super(key: key);
 
   static const colorShades = [500, 600, 700, 800, 900];
-
-  final SliverTableController _tableController = SliverTableController(
-    colsCount: colorShades.length,
-    rowsCount: 100,
-    cellWidth: 100.0,
-    cellHeight: 50.0,
-    topHeaderHeight: 60.0,
-    leftHeaderCellWidth: 120.0,
-    topLeftCorner: Container(
-      color: Colors.yellow.shade800,
-      alignment: Alignment.center,
-      child: const Text('Corner'),
-    ),
-    topHeaderBuilder: (context, i) {
-      return _buildText('Col #$i', Colors.yellow.shade800);
-    },
-    leftHeaderBuilder: (context, i) {
-      return _buildText('Row Header #$i', Colors.primaries[i % Colors.primaries.length].shade400);
-    },
-    cellBuilder: (context, row, col) {
-      return _buildText(
-          'Cell ($row, $col)', Colors.primaries[row % Colors.primaries.length][colorShades[col]]);
-    },
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +34,58 @@ class ColorsTable extends StatelessWidget {
             title: Text('Sliver Table Demo'),
           ),
         ),
-        SliverTableHeader(tableController: _tableController),
-        SliverTableBody(tableController: _tableController),
+        SliverTable(
+          cellWidth: 100.0,
+          cellHeight: 50.0,
+          rowsCount: 100,
+          colsCount: colorShades.length,
+          topHeaderHeight: 60.0,
+          leftHeaderCellWidth: 120.0,
+          topLeftCorner: Container(
+            color: Colors.yellowAccent.shade700,
+            alignment: Alignment.center,
+            child: const Text('Corner'),
+          ),
+          topHeaderBuilder: (context, i) {
+            return TableCell(text: 'Col #$i');
+          },
+          leftHeaderBuilder: (context, i) {
+            return TableCell(
+              text: 'Row Header #$i',
+              color: Colors.primaries[i % Colors.primaries.length].shade400,
+            );
+          },
+          cellBuilder: (context, row, col) {
+            return TableCell(
+              text: 'Cell ($row, $col)',
+              color: Colors.primaries[row % Colors.primaries.length][colorShades[col]],
+            );
+          },
+          topHeaderContainerBuilder: (context, header) {
+            return Material(
+              color: Colors.yellowAccent,
+              elevation: 5,
+              child: header,
+            );
+          },
+        ),
       ],
     );
   }
+}
 
-  static Widget _buildText(String text, [Color? bgColor]) {
+class TableCell extends StatelessWidget {
+  const TableCell({required this.text, this.color, super.key});
+
+  final String text;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-      child: Text(text),
       alignment: Alignment.center,
-      color: bgColor ?? Colors.black,
+      color: color,
+      child: Text(text),
     );
   }
 }
